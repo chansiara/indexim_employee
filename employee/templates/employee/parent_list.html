@@ -1,0 +1,47 @@
+{% extends 'employee/index.html' %}
+{% load static %}
+{% load cms %}
+
+{% block navtitle %}
+  
+{% endblock navtitle %}
+
+{% block contenttitle %}
+  
+{% endblock contenttitle %}
+
+{% block contents %}
+	<div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <a href="{% get_url 'create' %}" class="btn btn-primary float-right js-load-form">
+                   <i class="nav-icon fas fa-plus"></i>
+                    Tambah
+                  </a>
+              </div>
+
+              <div class="card-body">
+                <table id="table" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    {% block table_header %}
+                    {% endblock table_header %}
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% get_template_name as name %}
+                    {% include name %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th scope="col">#</th>
+                    {% block table_footer %}
+                    {% endblock table_footer %}
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+{% endblock contents %}

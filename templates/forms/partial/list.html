@@ -1,0 +1,19 @@
+{% load cms %}
+{% for object in object_list %}
+	<tr>
+		<th scope="row">{{forloop.counter}}</th>
+		{% block contents %}
+			
+		{% endblock contents %}
+		<td>
+		<a href="{% get_url 'update' object %}" class="btn btn-warning btn-sm js-load-form">
+			<i class="fa fa-pencil-alt" aria-hidden="true"></i>
+			Ubah
+		</a>
+		<a href="{% get_url 'delete' object %}" class="btn btn-danger btn-sm js-load-form">
+			<i class="fa fa-trash" aria-hidden="true"></i>
+			Hapus
+		</a>
+		</td>
+	</tr>
+	{% endfor %}

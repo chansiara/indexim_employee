@@ -1,0 +1,33 @@
+{% load widget_tweaks %}
+
+ {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+<div class="row">
+  {% for field in form.visible_fields %}
+  {% if field.name == 'code' %}
+    {% render_field field type="hidden" class="form-control" id="code" value='GENERATED' %}
+  {% elif field.name == form.user.name %}
+    {% render_field form.user type="hidden" class="form-control" id="loggedUser" value=user.get_username %}
+  {% else %}
+    <div class="col-md-4 form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }} :</label>
+          {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% if forloop.counter|divisibleby:100 %}
+    <span class="clearfix">
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+  {% if 'item' in request.path %}
+  <div class="col-sm-12 form-group">
+    <label> Upload Gambar :</label>
+    <input class="form-control" type="file" multiple name="images" id="itemimages">
+  </div>
+  <span class="clearfix"></span>
+  {% endif %}
+</div>
+    

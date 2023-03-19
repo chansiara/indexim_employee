@@ -1,0 +1,12 @@
+{% extends "forms/partial/list.html" %}
+{% load cms %}
+{% load humanize %}
+
+{% block contents %}
+	<td><a href="{% get_url 'detail' object %}" class="js-load-form">{{object.name}}</a></td>
+	<td>{{object.base_salary|intcomma}}</td>
+	<td>{{object.transport|intcomma}}</td>
+	<td>{{object.family_incentive|intcomma}}</td>
+	<td>{{object.bpjs_cut|intcomma}}</td>
+	<td>{{object.take_home_pay|intcomma}}</td>
+{% endblock contents %}

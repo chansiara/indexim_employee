@@ -1,0 +1,18 @@
+{% load cms %}
+
+<form method="post" action="{% if not form.instance.pk %}{% get_url 'create' %}{% else %}{% get_url 'update' form.instance %}{% endif %}" class="js-save-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h4 class="modal-title">{% if not form.instance.pk %}Tambah {% else %} Update {% endif %}</h4>
+  </div>
+  <div class="modal-body">
+    {% include "forms/form_temp.html" %}
+  </div>
+
+  <div class="modal-footer">
+        <button id="btnsubmit" type="submit" class="btn btn-primary">
+        <i class="loading-icon fa fa-spinner fa-spin hide"></i>
+        <span class="btn-txt">{% if not form.instance.pk %}Buat{% else %}Update{% endif %}</span>
+      </button>
+  </div>
+</form>

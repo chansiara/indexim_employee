@@ -1,0 +1,92 @@
+{% load widget_tweaks %}
+
+ {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+<div class="row">
+  {% for field in form.visible_fields %}
+  {% if field.name == 'remark' or field.name == 'desc' or field.name == 'bankcompany' or field.name == 'ket' or field.name == 'features' %}
+    <div class="col-md-12 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field|add_class:'form-control' }}
+    </div>
+  {% elif field.name == 'code' %}
+    {% if 'province' in request.path %}
+        {% render_field field type="hidden" class="form-control" id="code" value='GEN' %}
+    {% elif 'warehouse/rack/' in request.path%}
+      <div class="col-md-6 form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" required id="{{field.id_for_label}}" name="{{field.name}}" value="{% if form.instance.pk %}{{field.value}}{% endif %}">
+      </div>
+    {% elif 'finance/coa/' in request.path%}
+      <div class="col-md-6 form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" required id="{{field.id_for_label}}" name="{{field.name}}" value="AUTO-GENERATED" readonly>
+      </div>
+    {% else %}
+      <div class="col-md-6 form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" required id="{{field.id_for_label}}" name="{{field.name}}" value="{% if form.instance.pk %}{{field.value}}{% endif %}" {% if form.instance.pk %}readonly{% endif %}>
+      </div>
+    {% endif %}
+  {% elif 'date' in field.name %}
+    <div class="col-md-6 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="date" id="{{field.id_for_label}}" name="{{field.name}}" value="{{field.value | date:'c'}}">
+      </div>
+  {% elif 'manualstock' in request.path and 'item' in field.name %}
+      {% render_field field|append_attr:"readonly:readonly" type="hidden" class="form-control" name=field.name id=field.name value=item_id %}
+      <div class="col-md-6 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" id="itemname" name="itemname" value="{{item_name}}" readonly>
+      </div>
+  {% elif 'price' in request.path and 'item' in field.name or 'unitdetail' in request.path and 'item' in field.name %}
+      {% render_field field type="hidden" class="form-control" name=field.name id=field.name value=item %}
+      <div class="col-md-6 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" id="itemname" name="itemname" value="{{name}}" readonly>
+      </div>
+  {% elif 'itemcost' in request.path and 'item' in field.name %}
+      {% render_field field type="hidden" class="form-control" name=field.name id=field.name value=item %}
+      <div class="col-md-6 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" id="itemname" name="itemname" value="{{name}}" readonly>
+      </div>
+  {% elif 'unitdetail' in request.path and 'receiving' in field.name %}
+      {% render_field field type="hidden" class="form-control" name=field.name id=field.name value=receiving %}
+      <div class="col-md-6 form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-control" type="text" id="acgcode" name="acgcode" value="{{acg_code}}" readonly>
+      </div> 
+  {% else %}
+      <div class="col-md-6 form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {% if field.name == form.user.name %}
+          {% render_field form.user type="text" class="form-control" id="loggedUser" value=user.get_username %}
+          {% elif 'logo' in field.name%}
+          {% render_field field type="file" class="form-control" name=field.name id=field.name %}
+        {% else %}
+          {{ field|add_class:'form-control' }}
+        {% endif %}
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% if forloop.counter|divisibleby:24 %}
+    <span class="clearfix">
+    {% endif %}
+     {% endif %}
+    {% endfor %}
+  {% if 'update-rack' in request.path %}
+      <div class="col-md-6 form-group">
+      <label>Brand</label>
+        <input class="form-control" type="text" id="brandrack" name="brandrack" value="{{testid.brand_id}}" readonly>
+      </div>
+  {% elif 'stok/update/' in request.path %}
+      <div class="col-md-12 form-group">
+      <label>Ket</label>
+        <textarea class="form-control" id="keterangan" name="keterangan" rows="3" cols="12"></textarea>
+      </div>    
+  {% endif %}
+</div>
+    

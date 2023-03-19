@@ -1,0 +1,30 @@
+{% load cms %}
+{% for bank in object_list %}
+	<tr>
+		<th scope="row">{{forloop.counter}}</th>
+		<td><a href="{% get_url 'detail' bank %}" class="js-load-form">{{bank.name}}</a></td>
+		<td>{{bank.user}}</td>
+		<td>
+		{% if 'Inactive' in page_title %}
+		<a href="{% get_url 'inactive' bank %}" class="btn btn-primary btn-sm">
+		<i class="fa fa-pencil-alt" aria-hidden="true"></i>
+		Restore
+		</a>
+		{% else %}
+		<a href="{% get_url 'update' bank %}" class="btn btn-warning btn-sm js-load-form">
+		<i class="fa fa-pencil-alt" aria-hidden="true"></i>
+		Ubah
+		</a>
+		<a href="{% get_url 'delete' bank %}" class="btn btn-danger btn-sm js-load-form">
+		<i class="fa fa-trash" aria-hidden="true"></i>
+		Hapus
+		</a>
+		</td>
+		{% endif %}
+		
+	</tr>
+	{% empty %}
+	<tr>
+	<td colspan="8" class="text-center bg-light">No data found..</td>
+	</tr>
+	{% endfor %}

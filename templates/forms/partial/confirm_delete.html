@@ -1,0 +1,17 @@
+{% load cms %}
+
+<form  method="post" action="{% get_url 'delete' object %}" class="js-save-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm {{object.name}} deletion</h4>
+  </div>
+  <div class="modal-body">
+    <p class="lead">Are you sure you want to delete : <strong>{{ object.name }}</strong>?</p>
+  </div>
+  <div class="modal-footer">
+        <button id="btnsubmit" type="submit" class="btn btn-primary">
+        <i class="loading-icon fa fa-spinner fa-spin hide"></i>
+        <span class="btn-txt">Delete {{object.name}}</span>
+      </button>
+  </div>
+</form>

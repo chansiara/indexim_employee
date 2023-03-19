@@ -1,0 +1,50 @@
+[
+    {
+      "model": "employee.position",
+      "pk": 1,
+      "fields": {
+        "name" : "Supervisor",
+        "base_salary": "10000000.00",
+        "transport": "1000000.00",
+        "family_incentive": "1500000.00",
+        "bpjs_cut":"0.04",
+        "take_home_pay":"12100000.00"
+      }
+    },
+    {
+        "model": "employee.position",
+        "pk": 2,
+        "fields": {
+          "name" : "Officer",
+          "base_salary": "5000000.00",
+          "transport": "750000.00",
+          "family_incentive": "1000000.00",
+          "bpjs_cut":"0.04",
+          "take_home_pay":"6550000.00"
+        }
+      },
+      {
+        "model": "employee.position",
+        "pk": 3,
+        "fields": {
+          "name" : "Superintendent",
+          "base_salary": "15000000.00",
+          "transport": "1250000.00",
+          "family_incentive": "2000000.00",
+          "bpjs_cut":"0.04",
+          "take_home_pay":"17650000.00"
+        }
+      },
+      {
+        "model": "employee.position",
+        "pk": 4,
+        "fields": {
+          "name" : "Manager",
+          "base_salary": "20000000.00",
+          "transport": "1500000.00",
+          "family_incentive": "2500000.00",
+          "bpjs_cut":"0.04",
+          "take_home_pay":"23200000.00"
+        }
+      }
+  ]
