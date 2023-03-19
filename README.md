@@ -2,6 +2,7 @@ FEATURES :
 Backend - Django (Python)
 Frontend - jQuery
 DB - PostgreSQL
+Saya juga membuat cms sendiri untuk memudahkan penggunaan django & jquery agar code reusable dan mudah dipalikasikan
 
 CARA RUN MINI EMPLOYEE MANAGER :
 
