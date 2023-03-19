@@ -1,0 +1,6 @@
+Django==3.2.4
+wheel==0.37.1
+django-widget-tweaks==1.4.12
+djangorestframework==3.12.4
+sweetify==2.0.0
+psycopg2-binary==2.9.3
