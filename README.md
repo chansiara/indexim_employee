@@ -16,4 +16,6 @@ CARA RUN MINI EMPLOYEE MANAGER :
 9. setelah selesai, jalankan perintah python manage.py migrate
 10. setelah selesai , jalankan perintah python manage.py loaddata initial_position.json
 
-selesai
+INFORMASI TAMBAHAN :
+
+JIKA BERHASIL MAKA APLIKASI AKAN TERLIHAT SEPERTI GAMBAR-GAMBAR DI FOLDER DOCUMENTATION
